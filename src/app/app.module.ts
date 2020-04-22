@@ -7,11 +7,12 @@ import {LoginComponent} from './login/login.component';
 import {AppRoutingModule} from '../app-routing.module';
 import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {HttpErrorLoggingInterceptor} from "./error/http-error-logging-interceptor.service";
+import {HttpErrorLoggingInterceptor} from "./error/http-error-logging.interceptor";
 import {AuthorizationTokenAddingInterceptor} from "./authorization/authorization-token-adding.interceptor";
 import {CookieService} from "ngx-cookie-service";
 import {CookieStorageService} from "./cookies/cookie-storage.service";
 import {ExamComponent} from './exam/exam.component';
+import {UnauthorizedErrorHandlerInterceptor} from "./error/unauthorized-error-handler.interceptor";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,11 @@ import {ExamComponent} from './exam/exam.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationTokenAddingInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedErrorHandlerInterceptor,
       multi: true
     },
     CookieService,

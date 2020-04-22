@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {RestClientService} from "../rest-client/rest-client.service";
-import {CookieStorageService} from "../cookies/cookie-storage.service";
 import {LoginService} from "./login.service";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -10,21 +9,34 @@ import {LoginService} from "./login.service";
 })
 export class LoginComponent implements OnInit {
 
+  static navigateToQueryParamKey: string = 'navigateTo';
+
+  queryParameters: Params;
   username: string = '';
   password: string = '';
+  loggingError: string = '';
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.queryParameters = params;
+    });
   }
 
   login() {
-    this.loginService.login({username: this.username, password: this.password});
+    this.loggingError = '';
+    this.loginService.login({username: this.username, password: this.password})
+      .subscribe(success => this.router.navigate([this.getNavigationUrl()]),
+        error => this.loggingError = error.error);
   }
-}
 
-interface LoginRequest {
-  username: string;
-  password: string;
+  private getNavigationUrl() {
+    const queryParamNavigation = this.queryParameters[LoginComponent.navigateToQueryParamKey];
+    if (queryParamNavigation != null) {
+      return queryParamNavigation;
+    }
+    return '/';
+  }
 }

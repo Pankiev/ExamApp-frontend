@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {RestClientService} from "../rest-client/rest-client.service";
 import {CookieStorageService} from "../cookies/cookie-storage.service";
+import {tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,11 @@ export class LoginService {
   }
 
   public login(request: LoginRequest) {
-    this.restClient.post('/login', request)
-      .subscribe((authorizationToken: string) => this.storeInCookies(authorizationToken));
+    return this.restClient.post('/login', request)
+      .pipe(tap((authorizationToken: string) => this.storeInCookies(authorizationToken)));
   }
 
   private storeInCookies(authorizationToken: string) {
-    console.log(`Authorization token received: ${authorizationToken}`);
     this.cookies.authorizationToken = authorizationToken;
   }
 }

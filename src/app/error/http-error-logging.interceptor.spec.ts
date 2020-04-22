@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HttpErrorLoggingInterceptor } from './http-error-logging-interceptor.service';
+import { HttpErrorLoggingInterceptor } from './http-error-logging.interceptor';
 
 describe('HttpErrorHandlerInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({

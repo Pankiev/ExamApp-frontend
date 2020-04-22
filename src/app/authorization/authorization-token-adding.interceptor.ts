@@ -14,7 +14,6 @@ export class AuthorizationTokenAddingInterceptor implements HttpInterceptor {
     if (authorization == null || authorization.length == 0) {
       return next.handle(originalRequest);
     }
-    console.log(authorization);
     const requestWithAuthorizationHeader = originalRequest.clone({setHeaders: {'Authorization': authorization}});
     return next.handle(requestWithAuthorizationHeader);
   }
