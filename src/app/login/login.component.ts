@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RestClientService} from "../rest-client/rest-client.service";
+import {CookieStorageService} from "../cookies/cookie-storage.service";
+import {LoginService} from "./login.service";
 
 @Component({
   selector: 'app-login',
@@ -7,16 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  username: String = '';
-  password: String = '';
+  username: string = '';
+  password: string = '';
 
-  constructor() { }
+  constructor(private loginService: LoginService) {
+  }
 
   ngOnInit(): void {
   }
 
   login() {
-    this.username = 'qwe';
-    this.password = 'asd';
+    this.loginService.login({username: this.username, password: this.password});
   }
+}
+
+interface LoginRequest {
+  username: string;
+  password: string;
 }
