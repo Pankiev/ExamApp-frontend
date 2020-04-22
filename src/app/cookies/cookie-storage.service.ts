@@ -9,12 +9,20 @@ export class CookieStorageService {
   constructor(private cookies: CookieService) {
   }
 
-  get authorizationToken() {
+  public get authorizationToken() {
       return this.cookies.get(this.authorizationTokenKey);
   }
 
-  set authorizationToken(authorizationHeader: string) {
+  public set authorizationToken(authorizationHeader: string) {
     this.cookies.set(this.authorizationTokenKey, authorizationHeader);
+  }
+
+  public hasAuthorizationToken() {
+    return this.authorizationToken != null && this.authorizationToken.length > 0;
+  }
+
+  public removeAuthorizationToken() {
+    this.cookies.delete(this.authorizationTokenKey);
   }
 
   private get authorizationTokenKey() {

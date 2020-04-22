@@ -13,26 +13,35 @@ import {CookieService} from "ngx-cookie-service";
 import {CookieStorageService} from "./cookies/cookie-storage.service";
 import {ExamComponent} from './exam/exam.component';
 import {UnauthorizedErrorHandlerInterceptor} from "./error/unauthorized-error-handler.interceptor";
+import {LogoutComponent} from './logout/logout.component';
+import { MenuComponent } from './menu/menu.component';
+import {MatMenuModule} from "@angular/material/menu";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatButtonModule} from "@angular/material/button";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ExamComponent
+    ExamComponent,
+    LogoutComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatButtonToggleModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorLoggingInterceptor,
-      multi: true
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationTokenAddingInterceptor,
@@ -41,6 +50,11 @@ import {UnauthorizedErrorHandlerInterceptor} from "./error/unauthorized-error-ha
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UnauthorizedErrorHandlerInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorLoggingInterceptor,
       multi: true
     },
     CookieService,

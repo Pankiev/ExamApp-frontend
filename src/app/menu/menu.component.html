@@ -1,0 +1,13 @@
+<div>
+  <mat-toolbar class="navbar" color="primary">
+    <div>Welcome</div>
+    <div>
+      <div style="float: left">
+        <button class="element" mat-raised-button routerLink="/exam">Exams</button>
+        <button class="element" mat-raised-button *ngIf="showLoginButton()" routerLink="/login">Login</button>
+        <button class="element" mat-raised-button *ngIf="showLogoutButton()" routerLink="/logout">Logout</button>
+      </div>
+      <div class="element" *ngIf="showUserData()" style="float: right">{{getUserName()}}</div>
+    </div>
+  </mat-toolbar>
+</div>

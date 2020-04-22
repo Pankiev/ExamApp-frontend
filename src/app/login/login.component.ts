@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from "./login.service";
+import {AuthenticationService} from "./authentication.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
@@ -10,24 +10,29 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   static navigateToQueryParamKey: string = 'navigateTo';
+  static errorMessageQueryParamKey: string = 'errorMessage';
 
   queryParameters: Params;
   username: string = '';
   password: string = '';
   loggingError: string = '';
 
-  constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute) {
+  constructor(private authentication: AuthenticationService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.queryParameters = params;
+      this.loggingError = params[LoginComponent.errorMessageQueryParamKey];
+      if (this.authentication.isLoggedIn()) {
+        this.router.navigate([this.getNavigationUrl()]);
+      }
     });
   }
 
   login() {
     this.loggingError = '';
-    this.loginService.login({username: this.username, password: this.password})
+    this.authentication.login({username: this.username, password: this.password})
       .subscribe(success => this.router.navigate([this.getNavigationUrl()]),
         error => this.loggingError = error.error);
   }

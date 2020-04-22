@@ -1,0 +1,10 @@
+
+.navbar {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  justify-content: space-between;
+}
+
+.element {
+  margin-right: 1rem;
+}
