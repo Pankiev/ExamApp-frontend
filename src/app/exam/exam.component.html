@@ -1,3 +1,26 @@
 <p>exam works!</p>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let exam of exams">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{exam.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Liczba pytań: {{exam.questions.length}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-{{exams}}
+    <div class="h5">Pytania:</div>
+    <ul>
+      <li class="mat-list-item" *ngFor="let question of exam.questions">
+        {{question.question}}
+        <mat-list>
+          <mat-list-item [ngClass]="{'text-success': answer.valid}" *ngFor="let answer of question.answers">
+            <mat-divider></mat-divider>
+            {{answer.answer}}
+          </mat-list-item>
+        </mat-list>
+      </li>
+    </ul>
+  </mat-expansion-panel>
+</mat-accordion>

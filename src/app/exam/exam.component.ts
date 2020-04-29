@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {ExamService} from "./exam.service";
+import {Exam, ExamService} from "./exam.service";
 
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
-  styleUrls: ['./exam.component.css']
+  styleUrls: ['./exam.component.css'],
+  host: {'class': 'w-100'}
 })
 export class ExamComponent implements OnInit {
 
-  exams: string = 'No data';
+  exams: Exam[];
 
   constructor(private examService: ExamService) { }
 
   ngOnInit(): void {
     this.examService.findAll()
-      .subscribe(exams => this.exams = JSON.stringify(exams));
+      .subscribe(exams => this.exams = exams);
   }
-
 }

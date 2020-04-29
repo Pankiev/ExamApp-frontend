@@ -20,6 +20,9 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
+import {MatListModule} from "@angular/material/list";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import {MatCardModule} from "@angular/material/card";
     MatToolbarModule,
     MatButtonToggleModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatListModule,
+    MatExpansionModule,
+    MatIconModule
   ],
   providers: [
     {

@@ -13,7 +13,7 @@ export class RestClientService {
   constructor(private http: HttpClient, private responseDeserializer: ResponseDeserializerService) {
   }
 
-  get(url: string): Observable<Object> {
+  get(url: string): Observable<any> {
     console.log(`Making get request to ${url}`);
     return this.http.get(environment.apiLocation + url, {observe: 'response', responseType: 'arraybuffer'})
       .pipe(map((response: HttpResponse<ArrayBuffer>) => {
@@ -21,7 +21,7 @@ export class RestClientService {
       }));
   }
 
-  post(url: string, body: any): Observable<Object> {
+  post(url: string, body: any): Observable<any> {
     console.log(`Making post request to ${url} with body ${JSON.stringify(body)}`);
     return this.http.post(environment.apiLocation + url, body, {observe: 'response', responseType: 'arraybuffer'})
       .pipe(map((response: HttpResponse<ArrayBuffer>) => {
