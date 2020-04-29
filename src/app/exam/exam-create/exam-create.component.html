@@ -1,0 +1,39 @@
+<mat-card style="min-width: 40rem">
+  <div>
+    <mat-card-header>
+      <mat-card-title>Nowy egzamin</mat-card-title>
+      <mat-card-subtitle>Wypełnij dane</mat-card-subtitle>
+    </mat-card-header>
+    <mat-form-field class="w-100">
+      <mat-label>Nazwa</mat-label>
+      <input [(ngModel)]="exam.name" matInput>
+    </mat-form-field>
+    <div class="h5">Pytania:</div>
+    <ol>
+      <li *ngFor="let question of exam.questions" class="mat-list-item">
+        <mat-form-field>
+          <mat-label>Pytanie</mat-label>
+          <input [(ngModel)]="question.question" matInput>
+        </mat-form-field>
+        <div class="h6">Odpowiedzi:</div>
+        <ul>
+          <li class="mat-list-item">
+            <div *ngFor="let answer of question.answers">
+              <mat-form-field>
+                <mat-label>Dodaj odpowiedź</mat-label>
+                <input [(ngModel)]="answer.answer" matInput>
+              </mat-form-field>
+              <mat-checkbox>Poprawna</mat-checkbox>
+            </div>
+            <button mat-flat-button (click)="addAnswer(question)">Dodaj</button>
+          </li>
+        </ul>
+      </li>
+    </ol>
+    <button mat-flat-button (click)="addQuestion()">Dodaj pytanie</button>
+    <mat-card-actions style="text-align: right">
+      <button mat-flat-button color="primary" (click)="submit()">Zatwierdź</button>
+    </mat-card-actions>
+  </div>
+
+</mat-card>

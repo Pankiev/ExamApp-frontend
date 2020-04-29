@@ -14,7 +14,7 @@ import {CookieStorageService} from "./cookies/cookie-storage.service";
 import {ExamComponent} from './exam/exam.component';
 import {UnauthorizedErrorHandlerInterceptor} from "./error/unauthorized-error-handler.interceptor";
 import {LogoutComponent} from './logout/logout.component';
-import { MenuComponent } from './menu/menu.component';
+import {MenuComponent} from './menu/menu.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
@@ -23,6 +23,10 @@ import {MatCardModule} from "@angular/material/card";
 import {MatListModule} from "@angular/material/list";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatIconModule} from "@angular/material/icon";
+import {ExamCreateComponent} from './exam/exam-create/exam-create.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ import {MatIconModule} from "@angular/material/icon";
     LoginComponent,
     ExamComponent,
     LogoutComponent,
-    MenuComponent
+    MenuComponent,
+    ExamCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,10 @@ import {MatIconModule} from "@angular/material/icon";
     MatCardModule,
     MatListModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [
     {

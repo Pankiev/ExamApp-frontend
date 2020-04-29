@@ -16,20 +16,20 @@ export class ExamService {
 }
 
 export interface Exam {
-  id: number;
+  id?: number;
   name: string;
   questions: Question[];
 }
 
 export interface Question {
-  id: number;
+  id?: number;
   question: string;
   secondsForAnswer: number;
   answers: Answer[];
 }
 
 export interface Answer {
-  id: number;
+  id?: number;
   valid: boolean;
   answer: string;
 }

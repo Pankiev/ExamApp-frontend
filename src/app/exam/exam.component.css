@@ -7,3 +7,12 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.panel-button {
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.button-panel {
+  text-align: right;
+}
