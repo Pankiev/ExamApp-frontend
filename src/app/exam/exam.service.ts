@@ -9,9 +9,12 @@ export class ExamService {
 
   constructor(private restClient: RestClientService) { }
 
-
   findAll(): Observable<Exam[]> {
     return this.restClient.get('/exam');
+  }
+
+  saveNew(exam: Exam): Observable<Exam> {
+    return this.restClient.post('/exam/create', exam)
   }
 }
 

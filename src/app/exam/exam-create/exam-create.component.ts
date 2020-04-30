@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Answer, Exam, Question} from "../exam.service";
+import {Answer, Exam, ExamService, Question} from "../exam.service";
 
 @Component({
   selector: 'app-exam-create',
@@ -10,6 +10,9 @@ import {Answer, Exam, Question} from "../exam.service";
 export class ExamCreateComponent implements OnInit {
 
   exam: Exam = this.getDefaultExam();
+
+  constructor(private examService: ExamService) {
+  }
 
   private getDefaultExam(): Exam {
     return {
@@ -29,15 +32,11 @@ export class ExamCreateComponent implements OnInit {
   private getDefaultAnswer(): Answer {
     return {
       answer: 'Twoja odpowiedź',
-      valid: true
+      valid: false
     };
   }
 
   ngOnInit(): void {
-  }
-
-  submit() {
-    console.log(this.exam);
   }
 
   addQuestion() {
@@ -46,5 +45,12 @@ export class ExamCreateComponent implements OnInit {
 
   addAnswer(question: Question) {
     question.answers.push(this.getDefaultAnswer());
+  }
+
+  submit() {
+    this.examService.saveNew(this.exam).subscribe((newExam: Exam) => {
+      this.exam = newExam;
+      console.log(this.exam);
+    });
   }
 }

@@ -23,7 +23,7 @@
                 <mat-label>Dodaj odpowiedź</mat-label>
                 <input [(ngModel)]="answer.answer" matInput>
               </mat-form-field>
-              <mat-checkbox>Poprawna</mat-checkbox>
+              <mat-checkbox [(ngModel)]="answer.valid" >Poprawna</mat-checkbox>
             </div>
             <button mat-flat-button (click)="addAnswer(question)">Dodaj</button>
           </li>
