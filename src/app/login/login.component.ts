@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from "./authentication.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from "./authentication.service";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -32,10 +32,16 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loggingError = '';
-    this.authentication.login({username: this.username, password: this.password})
+    this.authentication.login({ username: this.username, password: this.password })
       .subscribe(success => this.router.navigate([this.getNavigationUrl()]),
         error => this.loggingError = error.error);
   }
+
+  registration() {
+    this.router.navigateByUrl('registration');
+  }
+
+
 
   private getNavigationUrl() {
     const queryParamNavigation = this.queryParameters[LoginComponent.navigateToQueryParamKey];
@@ -44,4 +50,5 @@ export class LoginComponent implements OnInit {
     }
     return '/';
   }
+
 }
