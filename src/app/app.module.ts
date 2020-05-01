@@ -27,6 +27,8 @@ import {ExamCreateComponent} from './exam/exam-create/exam-create.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { ExamTakeComponent } from './exam/exam-take/exam-take.component';
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -35,26 +37,28 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ExamComponent,
     LogoutComponent,
     MenuComponent,
-    ExamCreateComponent
+    ExamCreateComponent,
+    ExamTakeComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatButtonToggleModule,
-    MatButtonModule,
-    MatCardModule,
-    MatListModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatButtonToggleModule,
+        MatButtonModule,
+        MatCardModule,
+        MatListModule,
+        MatExpansionModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatRadioModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

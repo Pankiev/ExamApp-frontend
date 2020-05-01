@@ -16,6 +16,17 @@ export class ExamService {
   saveNew(exam: Exam): Observable<Exam> {
     return this.restClient.post('/exam/create', exam)
   }
+
+  takeTest(examId: number | string): Observable<UserExam> {
+    return this.restClient.post(`/exam/${examId}/takeTest`);
+  }
+}
+
+export interface UserExam {
+  exam: Exam;
+  testApproachDate: Date;
+  questionsWithAnswers: any[];
+  finished: boolean;
 }
 
 export interface Exam {
@@ -35,4 +46,5 @@ export interface Answer {
   id?: number;
   valid: boolean;
   answer: string;
+  chosenByUser?: boolean;
 }

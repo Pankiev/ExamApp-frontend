@@ -21,7 +21,7 @@ export class RestClientService {
       }));
   }
 
-  post(url: string, body: any): Observable<any> {
+  post(url: string, body?: any): Observable<any> {
     console.log(`Making post request to ${url} with body ${JSON.stringify(body)}`);
     return this.http.post(environment.apiLocation + url, body, {observe: 'response', responseType: 'arraybuffer'})
       .pipe(map((response: HttpResponse<ArrayBuffer>) => {

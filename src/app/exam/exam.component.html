@@ -1,4 +1,3 @@
-
 <div class="button-panel">
   <button class="panel-button" routerLink="create" mat-raised-button color="primary">Nowy egzamin</button>
 </div>
@@ -14,16 +13,17 @@
     </mat-expansion-panel-header>
 
     <div class="h5">Pytania:</div>
-    <ul>
-      <li class="mat-list-item" *ngFor="let question of exam.questions">
-        {{question.question}}
-        <mat-list>
-          <mat-list-item [ngClass]="{'text-success': answer.valid}" *ngFor="let answer of question.answers">
-            <mat-divider></mat-divider>
-            {{answer.answer}}
-          </mat-list-item>
-        </mat-list>
-      </li>
-    </ul>
+      <ul>
+        <li class="mat-list-item" *ngFor="let question of exam.questions">
+          {{question.question}}
+          <mat-list>
+            <mat-list-item [ngClass]="{'text-success': answer.valid}" *ngFor="let answer of question.answers">
+              <mat-divider></mat-divider>
+              {{answer.answer}}
+            </mat-list-item>
+          </mat-list>
+        </li>
+      </ul>
+    <button mat-flat-button color="primary" [routerLink]="[exam.id, 'take']">Rozwiąż test</button>
   </mat-expansion-panel>
 </mat-accordion>

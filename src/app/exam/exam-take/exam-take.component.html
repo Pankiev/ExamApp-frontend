@@ -1,0 +1,22 @@
+<mat-card style="min-width: 40rem">
+  <div>
+    <mat-card-header>
+      <mat-card-title>{{examData.exam.name}}</mat-card-title>
+    </mat-card-header>
+    <div class="h5">Pytania:</div>
+    <ol>
+      <li *ngFor="let question of examData.exam.questions" class="mat-list-item">
+        <div class="h5">{{question.question}}</div>
+        <ul>
+          <li class="mat-list-item" *ngFor="let answer of question.answers">
+            <mat-checkbox [(ngModel)]="answer.chosenByUser">{{answer.answer}}</mat-checkbox>
+          </li>
+        </ul>
+      </li>
+    </ol>
+    <mat-card-actions style="text-align: right">
+      <button mat-flat-button color="primary" (click)="submit()">Zatwierdź</button>
+    </mat-card-actions>
+  </div>
+
+</mat-card>
