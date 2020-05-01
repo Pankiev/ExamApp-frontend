@@ -27,6 +27,7 @@ import {ExamCreateComponent} from './exam/exam-create/exam-create.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ExamComponent,
     LogoutComponent,
     MenuComponent,
-    ExamCreateComponent
+    ExamCreateComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

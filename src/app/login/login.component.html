@@ -1,9 +1,11 @@
 
-Login form <br/>
-Username: <input type="text" name="username" [(ngModel)]="username"/> <br/>
-Password: <input type="password" name="password" [(ngModel)]="password"/> <br/>
+Imię i nazwisko: <input type="text" name="username" [(ngModel)]="username"/> <br/>
+Hasło: <input type="password" name="password" [(ngModel)]="password"/> <br/>
 
-<button (click)="login()">Login</button>
+<button (click)="login()">Zaloguj</button> <br/>
+
+<button (click)="registration()">Rejestracja</button>
+
 
 <div class="mat-error">
   {{loggingError}}

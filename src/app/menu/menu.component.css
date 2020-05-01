@@ -8,3 +8,7 @@
 .element {
   margin-right: 1rem;
 }
+
+.nav-greet {
+  display: flex;
+}
