@@ -20,13 +20,26 @@ export class ExamService {
   takeTest(examId: number | string): Observable<UserExam> {
     return this.restClient.post(`/exam/${examId}/takeTest`);
   }
+
+  chooseAnswer(answerId: number | string) {
+    return this.restClient.post(`/exam/chooseAnswer/${answerId}`);
+  }
+
+  unchooseAnswer(answerId: number | string) {
+    return this.restClient.post(`/exam/unchooseAnswer/${answerId}`);
+  }
 }
 
 export interface UserExam {
   exam: Exam;
   testApproachDate: Date;
-  questionsWithAnswers: any[];
+  questionsWithAnswers: QuestionsAnswer[];
   finished: boolean;
+}
+
+export interface QuestionsAnswer {
+  question: Question;
+  answer: Answer;
 }
 
 export interface Exam {
@@ -46,5 +59,4 @@ export interface Answer {
   id?: number;
   valid: boolean;
   answer: string;
-  chosenByUser?: boolean;
 }

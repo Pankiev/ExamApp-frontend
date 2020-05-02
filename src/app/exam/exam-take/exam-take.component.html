@@ -9,7 +9,7 @@
         <div class="h5">{{question.question}}</div>
         <ul>
           <li class="mat-list-item" *ngFor="let answer of question.answers">
-            <mat-checkbox [(ngModel)]="answer.chosenByUser">{{answer.answer}}</mat-checkbox>
+            <mat-checkbox (change)="onAnswerChooseChange($event, answer)" [checked]="isAnswerChosen(answer)" >{{answer.answer}}</mat-checkbox>
           </li>
         </ul>
       </li>
