@@ -16,7 +16,10 @@
         Liczba rozwiązań: {{examApproaches.length}}
         <ul>
           <li *ngFor="let examApproach of examApproaches">
-            {{examApproach.user.username}}: {{examApproach.totalScore}}pkt
+            <strong>Nazwa użytkownika:</strong> {{examApproach.user.username}}<br/>
+            <strong>Wynik:</strong>{{examApproach.totalScore}}pkt<br/>
+            <strong>Klasa </strong>{{examApproach.user.schoolClass}}<br/>
+            <strong>Numer z dziennika: </strong>{{examApproach.user.idInClass}}
           </li>
         </ul>
       </div>

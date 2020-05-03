@@ -6,7 +6,10 @@ export const DEFAULT_EXAM_DATA = <UserExam>Object.freeze({
     questions: []
   },
   user: {
-    username: "Nieznany"
+    username: "Nieznany",
+    creationDate: -1,
+    idInClass: -1,
+    schoolClass: 'Nieznana klasa'
   },
   totalScore: -1,
   finished: false,

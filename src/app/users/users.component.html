@@ -1,0 +1,23 @@
+<mat-accordion>
+  <mat-expansion-panel (expandedChange)="fetchUserExamApproaches(user.id)" *ngFor="let user of users">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <strong>{{user.username}}</strong>
+      </mat-panel-title>
+      <mat-panel-description>
+        Utworzono: {{getCreatedDate(user)}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngIf="areUserExamsFetched(user.id)">
+      <div *ngVar="getUserExams(user.id) as userExams">
+        Łącznie napisanych egzaminów: {{userExams.length}}
+        <ul>
+          <li *ngFor="let userExam of userExams">
+            <strong>Nazwa:</strong> {{userExam.exam.name}}<br/>
+            <strong>Wynik:</strong>{{userExam.totalScore}}pkt<br/>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

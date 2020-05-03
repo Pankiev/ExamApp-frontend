@@ -58,7 +58,11 @@ export interface QuestionsAnswer {
 }
 
 export interface User {
+  id: number;
   username: string;
+  schoolClass: string;
+  idInClass: number;
+  creationDate: number;
 }
 
 export interface Exam {

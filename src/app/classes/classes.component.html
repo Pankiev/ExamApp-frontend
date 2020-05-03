@@ -10,7 +10,9 @@
     </mat-expansion-panel-header>
     <ul>
       <li *ngFor="let user of schoolClass.users">
-        {{user.username}}
+        <strong>Nazwa użytkownika:</strong> {{user.username}}<br/>
+        <strong>Klasa</strong> {{user.schoolClass}}<br/>
+        <strong>Numer z dziennika: </strong>{{user.idInClass}}<br/>
       </li>
     </ul>
   </mat-expansion-panel>
