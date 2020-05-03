@@ -30,6 +30,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import { ExamTakeComponent } from './exam/exam-take/exam-take.component';
 import {MatRadioModule} from "@angular/material/radio";
 import { MyExamResultComponent } from './exam/exam-result/my-exam-result.component';
+import { NgVarDirective } from './ng-var.directive';
+import { ClassesComponent } from './classes/classes.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { MyExamResultComponent } from './exam/exam-result/my-exam-result.compone
     MenuComponent,
     ExamCreateComponent,
     ExamTakeComponent,
-    MyExamResultComponent
+    MyExamResultComponent,
+    NgVarDirective,
+    ClassesComponent,
+    UsersComponent
   ],
     imports: [
         BrowserModule,

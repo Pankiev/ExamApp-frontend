@@ -2,7 +2,7 @@
   <button class="panel-button" routerLink="create" mat-raised-button color="primary">Nowy egzamin</button>
 </div>
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let exam of exams">
+  <mat-expansion-panel (expandedChange)="fetchExamApproaches(exam.id)" *ngFor="let exam of exams">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{exam.name}}
@@ -11,19 +11,28 @@
         Liczba pytań: {{exam.questions.length}}
       </mat-panel-description>
     </mat-expansion-panel-header>
-
+    <div *ngIf="areExamApproachesLoaded(exam.id)">
+      <div *ngVar="getExamApproaches(exam.id) as examApproaches">
+        Liczba rozwiązań: {{examApproaches.length}}
+        <ul>
+          <li *ngFor="let examApproach of examApproaches">
+            {{examApproach.user.username}}: {{examApproach.totalScore}}pkt
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="h5">Pytania:</div>
-      <ul>
-        <li class="mat-list-item" *ngFor="let question of exam.questions">
-          {{question.question}}
-          <mat-list>
-            <mat-list-item [ngClass]="{'text-success': answer.valid}" *ngFor="let answer of question.answers">
-              <mat-divider></mat-divider>
-              {{answer.answer}}
-            </mat-list-item>
-          </mat-list>
-        </li>
-      </ul>
+    <ul>
+      <li class="mat-list-item" *ngFor="let question of exam.questions">
+        {{question.question}}
+        <mat-list>
+          <mat-list-item [ngClass]="{'text-success': answer.valid}" *ngFor="let answer of question.answers">
+            <mat-divider></mat-divider>
+            {{answer.answer}}
+          </mat-list-item>
+        </mat-list>
+      </li>
+    </ul>
     <div class="text-right">
       <button mat-flat-button color="primary" [routerLink]="[exam.id, 'take']">Rozwiąż test</button>
     </div>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {RestClientService} from "../rest-client/rest-client.service";
 import {Observable} from "rxjs";
 
@@ -7,7 +7,8 @@ import {Observable} from "rxjs";
 })
 export class ExamService {
 
-  constructor(private restClient: RestClientService) { }
+  constructor(private restClient: RestClientService) {
+  }
 
   findAll(): Observable<Exam[]> {
     return this.restClient.get('/exam');
@@ -21,24 +22,29 @@ export class ExamService {
     return this.restClient.post(`/exam/${examId}/takeTest`);
   }
 
-  chooseAnswer(answerId: number | string) {
+  chooseAnswer(answerId: number | string): Observable<void> {
     return this.restClient.post(`/exam/chooseAnswer/${answerId}`);
   }
 
-  unchooseAnswer(answerId: number | string) {
+  unchooseAnswer(answerId: number | string): Observable<void> {
     return this.restClient.post(`/exam/unchooseAnswer/${answerId}`);
   }
 
-  submitExam(examId: number | string) {
+  submitExam(examId: number | string): Observable<void> {
     return this.restClient.post(`/exam/${examId}/submit`);
   }
 
-  getUserExamResultDetails(examId: number | string) {
+  getUserExamResultDetails(examId: number | string): Observable<UserExam> {
     return this.restClient.get(`/exam/${examId}/userResult`);
+  }
+
+  getExamApproaches(examId: number | string): Observable<UserExam[]> {
+    return this.restClient.get(`/exam/${examId}/allApproaches`);
   }
 }
 
 export interface UserExam {
+  user: User;
   exam: Exam;
   testApproachDate: Date;
   questionsWithAnswers: QuestionsAnswer[];
@@ -49,6 +55,10 @@ export interface UserExam {
 export interface QuestionsAnswer {
   question: Question;
   answer: Answer;
+}
+
+export interface User {
+  username: string;
 }
 
 export interface Exam {

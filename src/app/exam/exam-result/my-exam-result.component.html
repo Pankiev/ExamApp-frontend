@@ -1,5 +1,5 @@
 <mat-card>
-  <div [hidden]="errorMessage.length === 0">
+  <div *ngIf="errorMessage.length > 0">
     <div class="mat-error">
       {{errorMessage}}
     </div>
@@ -7,7 +7,7 @@
       <button mat-flat-button color="primary" (click)="navigateToTakeExam()">Rozwiąż test</button>
     </div>
   </div>
-  <div [hidden]="errorMessage.length > 0">
+  <div *ngIf="errorMessage.length === 0">
     <mat-card-header>
       <mat-card-title>
         {{userExamResultDetails.exam.name}}

@@ -1,0 +1,17 @@
+<mat-accordion>
+ <mat-expansion-panel *ngFor="let schoolClass of schoolClasses">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <strong>{{schoolClass.name}}</strong>
+      </mat-panel-title>
+      <mat-panel-description>
+        Liczba uczniów: {{schoolClass.users.length}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul>
+      <li *ngFor="let user of schoolClass.users">
+        {{user.username}}
+      </li>
+    </ul>
+  </mat-expansion-panel>
+</mat-accordion>
