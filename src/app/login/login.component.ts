@@ -42,6 +42,6 @@ export class LoginComponent implements OnInit {
     if (queryParamNavigation != null) {
       return queryParamNavigation;
     }
-    return '/';
+    return '/exam';
   }
 }

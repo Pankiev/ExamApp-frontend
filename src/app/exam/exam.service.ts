@@ -28,12 +28,21 @@ export class ExamService {
   unchooseAnswer(answerId: number | string) {
     return this.restClient.post(`/exam/unchooseAnswer/${answerId}`);
   }
+
+  submitExam(examId: number | string) {
+    return this.restClient.post(`/exam/${examId}/submit`);
+  }
+
+  getUserExamResultDetails(examId: number | string) {
+    return this.restClient.get(`/exam/${examId}/userResult`);
+  }
 }
 
 export interface UserExam {
   exam: Exam;
   testApproachDate: Date;
   questionsWithAnswers: QuestionsAnswer[];
+  totalScore: number;
   finished: boolean;
 }
 

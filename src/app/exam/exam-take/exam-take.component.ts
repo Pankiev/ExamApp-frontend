@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {switchMap} from "rxjs/operators";
 import {Answer, ExamService, UserExam} from "../exam.service";
 import {MatCheckboxChange} from "@angular/material/checkbox";
+import {DEFAULT_EXAM_DATA} from "../default-exam-data";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-exam-take',
@@ -11,31 +13,21 @@ import {MatCheckboxChange} from "@angular/material/checkbox";
 })
 export class ExamTakeComponent implements OnInit {
 
-  examData: UserExam = this.createDefaultExamData();
+  private examId: string;
+  examData: UserExam = DEFAULT_EXAM_DATA;
 
-  constructor(private route: ActivatedRoute, private examService: ExamService) {
-  }
-
-  private createDefaultExamData(): UserExam {
-    return {
-      exam: {
-        name: 'Wczytywanie...',
-        questions: []
-      },
-      finished: false,
-      questionsWithAnswers: [],
-      testApproachDate: new Date(2000, 1, 1)
-    };
+  constructor(private route: ActivatedRoute, private router: Router, private examService: ExamService) {
   }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(switchMap((params: ParamMap) => {
-      return this.examService.takeTest(params.get('id'));
-    })).subscribe(examData => this.examData = examData);
-  }
-
-  submit() {
-    console.log('Submitted');
+      this.examId = params.get('id');
+      return this.examService.takeTest(this.examId);
+    })).subscribe(examData => this.examData = examData, (error: HttpErrorResponse) => {
+      if (error.error === 'Exam has been already taken') {
+        this.router.navigate(['/exam', this.examId, 'myResult']);
+      }
+    });
   }
 
   onAnswerChooseChange($event: MatCheckboxChange, answer: Answer) {
@@ -60,5 +52,10 @@ export class ExamTakeComponent implements OnInit {
     return this.examData.questionsWithAnswers
       .filter(existingUserAnswer => existingUserAnswer.answer.id == answer.id)
       .length > 0;
+  }
+
+  submit() {
+    this.examService.submitExam(this.examId)
+      .subscribe(result => this.router.navigate(['/exam', this.examId, 'myResult']));
   }
 }

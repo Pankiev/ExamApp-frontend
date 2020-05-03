@@ -29,6 +29,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { ExamTakeComponent } from './exam/exam-take/exam-take.component';
 import {MatRadioModule} from "@angular/material/radio";
+import { MyExamResultComponent } from './exam/exam-result/my-exam-result.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatRadioModule} from "@angular/material/radio";
     LogoutComponent,
     MenuComponent,
     ExamCreateComponent,
-    ExamTakeComponent
+    ExamTakeComponent,
+    MyExamResultComponent
   ],
     imports: [
         BrowserModule,

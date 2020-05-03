@@ -14,7 +14,7 @@ export class CookieStorageService {
   }
 
   public set authorizationToken(authorizationHeader: string) {
-    this.cookies.set(this.authorizationTokenKey, authorizationHeader);
+    this.cookies.set(this.authorizationTokenKey, authorizationHeader, undefined, '/');
   }
 
   public hasAuthorizationToken() {
@@ -22,7 +22,7 @@ export class CookieStorageService {
   }
 
   public removeAuthorizationToken() {
-    this.cookies.delete(this.authorizationTokenKey);
+    this.cookies.delete(this.authorizationTokenKey, '/');
   }
 
   private get authorizationTokenKey() {

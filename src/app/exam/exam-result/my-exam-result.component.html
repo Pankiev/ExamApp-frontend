@@ -1,0 +1,35 @@
+<mat-card>
+  <div [hidden]="errorMessage.length === 0">
+    <div class="mat-error">
+      {{errorMessage}}
+    </div>
+    <div class="text-right">
+      <button mat-flat-button color="primary" (click)="navigateToTakeExam()">Rozwiąż test</button>
+    </div>
+  </div>
+  <div [hidden]="errorMessage.length > 0">
+    <mat-card-header>
+      <mat-card-title>
+        {{userExamResultDetails.exam.name}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        Liczba pytań: {{userExamResultDetails.exam.questions.length}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    Rozpoczęcie testu: {{getTestApproachDate()}} <br/>
+    Wynik: {{userExamResultDetails.totalScore}}/{{userExamResultDetails.exam.questions.length}}pkt
+
+    <div class="h5">Pytania:</div>
+    <ul>
+      <li class="mat-list-item" *ngFor="let question of userExamResultDetails.exam.questions">
+        {{question.question}}
+        <mat-list>
+          <mat-list-item [ngClass]="{'text-success': answer.valid}" *ngFor="let answer of question.answers">
+            <mat-divider></mat-divider>
+            {{answer.answer}}
+          </mat-list-item>
+        </mat-list>
+      </li>
+    </ul>
+  </div>
+</mat-card>
