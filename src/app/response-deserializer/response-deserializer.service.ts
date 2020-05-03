@@ -7,7 +7,7 @@ export class ResponseDeserializerService {
 
   public deserialize(contentType: string, body: ArrayBuffer) {
     if (body.byteLength == 0) {
-      return null;
+      return body;
     }
     const stringBody = new TextDecoder('utf-8').decode(body);
     if (contentType.includes('text/plain')) {
